@@ -20,8 +20,10 @@ export default {
   },
   methods: {
     handleClick(e) {
+      const timestamp = new Date().getTime();
+      console.log('Button clicked, timestamp:', timestamp);
       this.$emit('my-click', {
-        timestamp: new Date().getTime(),
+        timestamp,
       });
     }
   }
