@@ -1,33 +1,32 @@
 <template>
-<div :class="$style.root" v-html="text">
-</div>
+  <Button :type="type" @click="handleClick">{{ label }}</Button>
 </template>
 <script>
+import { Button } from 'element-ui';
 export default {
   name: 'bo-my-button',
+  components: {
+    Button
+  },
   props: {
-    text: {
+    label: {
       type: String,
-      default: 'Hello'
+      default: '按钮'
     },
     type: {
       type: String,
       default: 'default'
     }
+  },
+  methods: {
+    handleClick(e) {
+      this.$emit('my-click', {
+        timestamp: new Date().getTime(),
+      });
+    }
   }
 };
 </script>
-<style module>
-.root {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  width: 600px;
-  height: 400px;
-  background-color: red;
-  color: #fff;
-  font-size: 24px;
-  border-radius: 12px;
-}
+<style>
+@import "element-ui/lib/theme-chalk/button.css";
 </style>

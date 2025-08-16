@@ -25,12 +25,14 @@
   ],
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "element-ui": "^2.15.14"
+  },
   "devDependencies": {
     "@lcap/builder": "^1.6.1",
-    "@nasl/types": "^0.1.14",
     "@lcap/storybook-vue-vite": "^7.6.17",
     "@lcap/vite-plugin-vue2": "^1.0.0",
+    "@nasl/types": "^0.1.14",
     "@storybook/addon-essentials": "^7.6.17",
     "@storybook/addon-interactions": "^7.6.17",
     "@storybook/addon-links": "^7.6.17",

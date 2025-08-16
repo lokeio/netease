@@ -9,8 +9,8 @@ namespace extensions.day_02_boboju.viewComponents {
     }
   })
   @Component({
-    title: '第二天题目一组件',
-    description: '第二天题目一组件',
+    title: '我的按钮',
+    description: '我的按钮',
   })
   export class BoMyButton extends ViewComponent {
     constructor(options?: Partial<BoMyButtonOptions>) {
@@ -20,22 +20,30 @@ namespace extensions.day_02_boboju.viewComponents {
 
   export class BoMyButtonOptions extends ViewComponentOptions {
     @Prop({
-      title: '内容',
-      description: '显示文本',
+      title: '标签',
+      description: '按钮显示的文本',
       setter: {
         concept: 'InputSetter'
       }
     })
-    text: nasl.core.String = '';
+    label: nasl.core.String = '按钮';
 
     @Prop({
       title: '类型',
-      description: '类型',
+      description: '按钮的类型',
       setter: {
         concept: 'EnumSelectSetter',
-        options: [{ title: '主要' }, { title: '次要' }, { title: '默认' }]
+        options: [{ title: '主要' }, { title: '成功' }, { title: '警告' }, { title: '危险' }, { title: '信息' }]
       }
     })
-    type: 'primary' | 'secondary' | 'default' = 'default';
+    type: 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'default' = 'default';
+
+    @Event({
+      title: '点击事件',
+      description: '按钮被点击时触发',
+    })
+    onMyClick: (event: {
+      timestamp: nasl.core.Integer,
+    }) => void;
   }
 }
