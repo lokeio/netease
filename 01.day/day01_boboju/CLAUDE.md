@@ -13,8 +13,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 # 快速构建（跳过测试）
 mvn clean package -Dmaven.test.skip=true
 
-# 使用run.bat脚本构建
+# 使用run.bat脚本构建（Windows）
 ./run.bat
+
+# Maven打包（包含NASL元数据生成）
+mvn clean package
 ```
 
 ### 安装依赖
@@ -66,7 +69,7 @@ com.wesoftcn/
 
 #### MyLogic.java
 主要业务逻辑类，包含：
-- `getWeekOfYear()`: 计算给定日期是当年的第几周（基于ISO 8601标准）
+- `getWeekOfYear()`: 计算给定日期是当年的第几周（基于ISO 8601标准），返回类型为String
 
 #### CalendarInput.java
 日历输入数据结构，包含：
@@ -80,9 +83,10 @@ com.wesoftcn/
 - 依赖包设置为`provided`作用域以避免与父应用版本冲突
 
 ### NASL低代码平台集成
-- 使用`@NaslLogic`注解标记业务逻辑方法
-- 使用`@NaslStructure`注解标记数据结构
-- 配置了`nasl-metadata-maven-plugin`用于元数据生成
+- 使用`@NaslLogic`注解标记业务逻辑方法（如MyLogic.getWeekOfYear()）
+- 使用`@NaslStructure`注解标记数据结构（如CalendarInput）
+- 配置了`nasl-metadata-maven-plugin`插件用于元数据生成和打包
+- Maven构建时会自动执行archive目标生成低代码平台所需的元数据
 - 日志使用`LCAP_EXTENSION_LOGGER`以在平台中显示
 
 ## 开发注意事项
@@ -100,3 +104,8 @@ com.wesoftcn/
 ### 异常处理
 - 使用自定义`InvalidInputException`处理业务异常
 - 所有输入验证都应抛出带有清晰错误信息的异常
+- 业务逻辑方法需要进行空值检查和数据有效性验证
+
+### Maven插件配置
+- `nasl-metadata-maven-plugin` 版本为1.5.1，配置了`jarWithDependencies=false`
+- 构建时自动执行archive目标，生成低代码平台所需的jar包和元数据
