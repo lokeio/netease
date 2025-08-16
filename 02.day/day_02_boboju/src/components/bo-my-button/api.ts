@@ -43,7 +43,7 @@ namespace extensions.day_02_boboju.viewComponents {
       description: '按钮被点击时触发',
     })
     onMyClick: (event: {
-      timestamp: nasl.core.Integer,
+      timestamp: nasl.core.String,
     }) => void;
   }
 }
